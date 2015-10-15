@@ -1,4 +1,4 @@
-function infoController($scope, $routeParams, locationService){
+function locationController($scope, $routeParams, locationService){
 	$scope.plage = $routeParams.plage;
 
 	var data = {};

@@ -6,7 +6,7 @@ function config($routeProvider) {
       })
       .when('/info/:plage', {
       	templateUrl: 'views/info.html',
-      	controller: 'infoController'
+      	controller: 'locationController'
       })
       .when('/map', {
       	templateUrl: 'views/map.html',

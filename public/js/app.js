@@ -1,10 +1,13 @@
 function config($routeProvider) {
 	$routeProvider
 	  .when('/', {
-        templateUrl: 'views/accueil.html',
-        controller: 'accueilController'
+        templateUrl: 'views/home.html',
+        controller: 'homeController'
       })
-
+      .when('/info/:plage', {
+      	templateUrl: 'views/info.html',
+      	controller: 'infoController'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -20,4 +23,6 @@ function config($routeProvider) {
 
 angular.module('shell-sea', ['ngRoute'])
    .config(config)
-   .controller('accueilController', accueilController)
+   .controller('homeController', homeController)
+   .controller('infoController', infoController)
+   .service('locationService', locationService)

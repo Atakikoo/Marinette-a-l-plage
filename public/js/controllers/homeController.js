@@ -4,5 +4,7 @@ function homeController($scope, $location) {
     $location.path('/info/' + $scope.data.location);
   }
 
-  
-}
+//   $scope.map = function() {
+//     $location.path('/map');
+//   }
+   }

@@ -7,7 +7,7 @@ function infoController($scope, $routeParams, locationService){
       //SUCCESS
       data = response.data;
       $scope.icone = data.weather[0].icon;
-      $scope.temp = data.main.temp;
+      $scope.temp = Math.round(data.main.temp);
       $scope.name = data.name;
       console.log(response.data);
 

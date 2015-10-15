@@ -8,7 +8,7 @@ function config($routeProvider) {
       	templateUrl: 'views/info.html',
       	controller: 'infoController'
       })
-      .when('/info/map', {
+      .when('/map', {
       	templateUrl: 'views/map.html',
       	// controller: 'mapController'
       })
@@ -29,6 +29,6 @@ angular.module('shell-sea', ['ngRoute'])
    .config(config)
    .controller('homeController', homeController)
    .controller('infoController', infoController)
-   // .controller('mapController', mapController)
+   .controller('mapController', mapController)
    .service('locationService', locationService)
-   // .service('mapService', mapService)
+   .service('mapService', mapService)

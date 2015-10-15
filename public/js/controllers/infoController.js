@@ -8,34 +8,27 @@ function infoController($scope, $routeParams, locationService){
       data = response.data;
       $scope.icone = data.weather[0].icon;
       $scope.temp = data.main.temp;
+      $scope.name = data.name;
       console.log(response.data);
+
+      var myLatLng = {lat: data.coord.lat, lng: data.coord.lon};
+
+	  // Create a map object and specify the DOM element for display.
+	  var map = new google.maps.Map(document.getElementById('googleMap'), {
+	    center: myLatLng,
+	    scrollwheel: false,
+	    zoom: 10
+	  });
+
+	  // Create a marker and set its position.
+	  var marker = new google.maps.Marker({
+	    map: map,
+	    position: myLatLng,
+	    title: $scope.plage
+	  });
+
     }, function(){
       //ERROR
     })
-
-	// function initialisation(){
- //  		var centreCarte = new google.map.LatLng(data.coord.lat, data.coord.lon);
- //  		var optioncarte = {
- //  		zoom:8,
- //  		center: centreCarte
- //  		mapTypeId:google.maps.MapTypeId.ROADMAP
- //  		}
- //  		var maCarte = new google.maps.Map(document.getElementById("googleMap"), optionCarte);
- //  		var marker = new google.maps.Marker({
-	//       position: {lat: data.coord.lat, lng: data.coord.lon},
-	//       map: maCarte,
-	//       title: 'Hello World!'
-
-	function initMap() {
-		  // Create a map object and specify the DOM element for display.
-		  var map = new google.maps.Map(document.getElementById(data.coord.lat, data.coord.lon), {
-		    center: {lat: -34.397, lng: 150.644},
-		    scrollwheel: false,
-		    zoom: 8
-		  });
-		}
-  	// };
-  		// initMap();
-  	// initialisation();
 
 }

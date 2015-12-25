@@ -10,7 +10,7 @@ function config($routeProvider) {
       })
       .when('/map', {
       	templateUrl: 'views/map.html',
-      	// controller: 'mapController'
+      	 controller: 'mapController'
       })
       .otherwise({
         redirectTo: '/'

@@ -1,58 +1,35 @@
-// function mapController($scope, $location, mapService) {
-  
-//   	// var dato = {};
-// 	mapService.getMap().then(function(response){
-// 	      //SUCCESS
-// 	      // dato = response.data;
-// 	      // console.log(dato);
-
-// 	      // Create a map object and specify the DOM element for display.
-		
-// 	      initMap();
-//      });
-
-// 	function initMap() {
-// 		  var map = new google.maps.Map(document.getElementById('googleMAP'), {
-// 		    center: {lat: 48.471, lng: 1.014},
-// 		    scrollwheel: false,
-// 		    zoom: 6
-// 		  })
-// 	}
-
-
-// }
-
-
 function mapController($scope, $location, mapService) {
   
   	var data = {};
+
+  	var laloupe = {lat: 48.471, lng: 1.014};
 	mapService.getMap().then(function(response){
-	      //SUCCESS
-	      data = response.data;
-	      console.log(data);
+	   console.log(response.data.records[0]);
 
-
-		initMap();
-		  
-		getMarker();
-		 
-		
-
-     });
-
-	function initMap() {
-		  var map = new google.maps.Map(document.getElementById('googleMAP'), {
-		    center: {lat: 48.471, lng: 1.014},
+	    var map = new google.maps.Map(document.getElementById('googleMAP'), {
+		    center: laloupe,
 		    scrollwheel: false,
 		    zoom: 6
 		  });
-		}
 
-	function getMarker() { new google.maps.Marker({
-		    map: map,
-		    position: {[-1.166666667, 46.016666669999985]},
-		    title: site
-		 });
-	}
+	   var list = response.data.records;
+ 	
+ 		list.forEach(function(element, index, list){
+ 			var newLat = element.fields.latitude;
+ 			var newLon = element.fields.longitude;
+ 			var newSite = element.fields.site;
+
+ 			var myLatLng = {lat: newLat, lng: newLon};
+
+ 			var marker = new google.maps.Marker({
+			    map: map,
+			    position: myLatLng,
+			    title: newSite
+			 });
+
+ 		});
+
+		 
+     });
 		    	
 }

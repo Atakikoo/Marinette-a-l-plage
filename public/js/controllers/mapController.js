@@ -28,8 +28,16 @@ function mapController($scope, $location, mapService) {
 			 });
 
  		});
+ 		//  this.marker.addListener('click', function() {
+	  //   $scope.plage = this.newSite;
+	  //   $scope.plage = $routeParams.plage;
+	  //   $location.url("http://127.0.0.1:8080/#/info/");
+	  // });
+		  
 
 		 
      });
-		    	
+
+
+	   	
 }

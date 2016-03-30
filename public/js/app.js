@@ -32,3 +32,5 @@ angular.module('shell-sea', ['ngRoute'])
    .controller('mapController', mapController)
    .service('locationService', locationService)
    .service('mapService', mapService)
+
+

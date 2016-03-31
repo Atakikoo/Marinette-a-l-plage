@@ -15,15 +15,13 @@ function locationController($scope, $routeParams, locationService){
       $scope.vent = data.wind.speed;
       $scope.name = data.name;
 
-      console.log(data);
-
       var myLatLng = {lat: data.coord.lat, lng: data.coord.lon};
 
 	  // Create a map object and specify the DOM element for display.
 	  var map = new google.maps.Map(document.getElementById('googleMap'), {
 	    center: myLatLng,
 	    scrollwheel: false,
-	    zoom: 10
+	    zoom: 7
 	  });
 
 	  // Create a marker and set its position.
@@ -59,7 +57,7 @@ function locationController($scope, $routeParams, locationService){
 		else {
 			phrase = "Ki fait kô, allez, on met le chu deul' flotte!";
 		}
-	$scope.adapter = phrase
+	$scope.adapter = phrase;
 	};
 
 	var souffler = function(vent) {
@@ -108,6 +106,6 @@ function locationController($scope, $routeParams, locationService){
 		else {
 			beaufort = "13 sur l'échelle eud' Beaufort. Y'a plus rin d'bout";
 		}
-	$scope.souffler = beaufort
+	$scope.souffler = beaufort;
 	};
 }

@@ -1,4 +1,4 @@
-function mapController($scope, $location, mapService) {
+function mapController($scope, $location, $routeParams, mapService) {
   
   	var data = {};
 
@@ -6,13 +6,13 @@ function mapController($scope, $location, mapService) {
 	mapService.getMap().then(function(response){
 	   console.log(response.data.records[0]);
 
-	    var map = new google.maps.Map(document.getElementById('googleMAP'), {
+	     var map = new google.maps.Map(document.getElementById('googleMAP'), {
 		    center: laloupe,
 		    scrollwheel: false,
 		    zoom: 6
-		  });
+		});
 
-	   var list = response.data.records;
+	   	var list = response.data.records;
  	
  		list.forEach(function(element, index, list){
  			var newLat = element.fields.latitude;
@@ -25,14 +25,16 @@ function mapController($scope, $location, mapService) {
 			    map: map,
 			    position: myLatLng,
 			    title: newSite
-			 });
+			});
 
- 		});
- 		//  this.marker.addListener('click', function() {
-	  //   $scope.plage = this.newSite;
-	  //   $scope.plage = $routeParams.plage;
-	  //   $location.url("http://127.0.0.1:8080/#/info/");
-	  // });
+ 			marker.addListener('click', function() {
+			    $routeParams.plage = newSite;
+			    $location.url('/info/' + $routeParams.plage);
+			});
+		 
+	  	});
+
+ 		
 		  
 
 		 

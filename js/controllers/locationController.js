@@ -7,29 +7,38 @@ function locationController($scope, $routeParams, locationService){
       //SUCCESS
 
 
-      data = response.data;
-      adapter(data.main.temp);
-      souffler(data.wind.speed);
-      $scope.icone = data.weather[0].icon;
-      $scope.temp = Math.round(data.main.temp);
-      $scope.vent = data.wind.speed;
-      $scope.name = data.name;
+	      data = response.data;
+	      adapter(data.main.temp);
+	      souffler(data.wind.speed);
+	      $scope.icone = data.weather[0].icon;
+	      $scope.temp = Math.round(data.main.temp);
+	      $scope.vent = data.wind.speed;
+	      $scope.name = data.name;
 
-      var myLatLng = {lat: data.coord.lat, lng: data.coord.lon};
+	      var myLatLng = {lat: data.coord.lat, lng: data.coord.lon};
 
-	  // Create a map object and specify the DOM element for display.
-	  var map = new google.maps.Map(document.getElementById('googleMap'), {
-	    center: myLatLng,
-	    scrollwheel: false,
-	    zoom: 7
-	  });
+	      var mapOptions = {
+	      	center: myLatLng,
+		     scrollwheel: false,
+		     zoom: 7,
+	          styles: [{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"administrative.country","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.country","elementType":"labels.text.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.country","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative.province","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.province","elementType":"labels.text.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.province","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.locality","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative.neighborhood","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative.land_parcel","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"poi.business","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"poi.government","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ff9000"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road.local","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.station","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#1e85f3"},{"visibility":"on"}]}]
+     };
 
-	  // Create a marker and set its position.
-	  var marker = new google.maps.Marker({
-	    map: map,
-	    position: myLatLng,
-	    title: $scope.plage
-	  });
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('googleMap');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+	  
+
+			  // Create a marker and set its position.
+			  var marker = new google.maps.Marker({
+			    map: map,
+			    position: myLatLng,
+			    title: $scope.plage
+			  });
 
     }, function(){
       //ERROR

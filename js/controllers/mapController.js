@@ -6,7 +6,6 @@ function mapController($scope, $location, $routeParams, mapService) {
         lng: 1.014
     };
     mapService.getMap().then(function (response) {
-        console.log(response.data.records[0]);
 
         var list = response.data.records;
 
@@ -270,18 +269,29 @@ function mapController($scope, $location, $routeParams, mapService) {
                 position: myLatLng,
                 title: newSite
             });
+            debugger
 
-            // Add content of marker
-            marker.content = '<div class="infoWindowContent">' + newSite + '</div>';
-            // Add eventListener on click to marker
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.setContent('<h2 style="color:red">' + marker.title + '</h2>' + marker.content);
-                infoWindow.open(map, marker);
-            });
+            
 
-        });
+            mapService.recoverInfoWeather(newSite).then(function(response){
+                
+                    var infoWeather = response.data;
+                    
+                    console.log(infoWeather);
+                    var temp = Math.round(infoWeather.main.temp);
+                    var wind = infoWeather.wind.speed;
 
-    });
+                    // marker.content = '<div class="infoWindowContent">' + newSite + temp + wind + '</div>';
+                    // Add eventListener on click to marker
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infoWindow.setContent('<h2 style="color:red">' + marker.title + '</h2>' + marker.content);
+                        infoWindow.open(map, marker);
+                    });
+            }); //end mapservice weather
+
+        }); //end foreach
+
+    }); //end mapservice
 
 
 

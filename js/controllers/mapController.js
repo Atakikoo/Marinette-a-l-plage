@@ -269,25 +269,30 @@ function mapController($scope, $location, $routeParams, mapService) {
                 position: myLatLng,
                 title: newSite
             });
-            debugger
 
-            
 
-            mapService.recoverInfoWeather(newSite).then(function(response){
-                
-                    var infoWeather = response.data;
+
+            // Add eventListener on click to marker
+            google.maps.event.addListener(marker, 'click', function () {
+                // Click on marker
+                mapService.recoverInfoWeather(newSite).then(function (response) {
+                    /*
                     
-                    console.log(infoWeather);
-                    var temp = Math.round(infoWeather.main.temp);
-                    var wind = infoWeather.wind.speed;
+                        (\(\    
+                        ( '.')  { Courage !
+                        0_(")(")
+                    
+                    */
+                        var infoWeather = response.data;
 
-                    // marker.content = '<div class="infoWindowContent">' + newSite + temp + wind + '</div>';
-                    // Add eventListener on click to marker
-                    google.maps.event.addListener(marker, 'click', function () {
+                        var temp = Math.round(infoWeather.main.temp);
+                        var wind = infoWeather.wind.speed;
+
+                        marker.content = '<div class="infoWindowContent">' + temp + "°C " + wind + '</div>';
                         infoWindow.setContent('<h2 style="color:red">' + marker.title + '</h2>' + marker.content);
                         infoWindow.open(map, marker);
-                    });
-            }); //end mapservice weather
+                    })
+            });
 
         }); //end foreach
 

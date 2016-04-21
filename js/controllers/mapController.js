@@ -269,7 +269,6 @@ function mapController($scope, $location, $routeParams, mapService) {
                 position: myLatLng,
                 title: newSite
             });
-            debugger
 
             
 
@@ -279,9 +278,9 @@ function mapController($scope, $location, $routeParams, mapService) {
                     
                     console.log(infoWeather);
                     var temp = Math.round(infoWeather.main.temp);
-                    var wind = infoWeather.wind.speed;
+                    var wind =  Math.round(infoWeather.wind.speed);
 
-                    // marker.content = '<div class="infoWindowContent">' + newSite + temp + wind + '</div>';
+                    marker.content = '<div class="infoWindowContent"> La température est de '+ temp +'° <br> et la vitesse du vent de '+ wind +' km/h.</div>';
                     // Add eventListener on click to marker
                     google.maps.event.addListener(marker, 'click', function () {
                         infoWindow.setContent('<h2 style="color:red">' + marker.title + '</h2>' + marker.content);
